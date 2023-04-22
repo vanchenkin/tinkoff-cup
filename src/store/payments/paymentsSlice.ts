@@ -1,27 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PaymentType } from "./types/Payment";
+import { Category } from "../categories/types/Category";
+import dayjs from "dayjs";
+
+type Filters = {
+    startDate?: string;
+    endDate?: string;
+    categories: string[];
+};
 
 type StateType = {
     payments: PaymentType[];
+    filters: Filters;
 };
 
 const initialState: StateType = {
     payments: JSON.parse(localStorage.getItem("payments") || "[]"),
+    filters: {
+        startDate: undefined,
+        endDate: undefined,
+        categories: [],
+    },
 };
 
 const paymentsSlice = createSlice({
     name: "payments",
     initialState,
     reducers: {
-        sortAndSave: (state) => {
-            state.payments = state.payments.sort(
-                (payment1, payment2) =>
-                    Number(payment1.date) - Number(payment2.date)
-            );
-            localStorage.setItem("payments", JSON.stringify(state.payments));
-        },
         addPayment: (state, action: PayloadAction<PaymentType>) => {
             state.payments.push(action.payload);
+
             localStorage.setItem("payments", JSON.stringify(state.payments));
         },
         removePayment: (state, action: PayloadAction<string>) => {
@@ -30,8 +38,14 @@ const paymentsSlice = createSlice({
             );
             localStorage.setItem("payments", JSON.stringify(state.payments));
         },
+        setFilters: (state, action: PayloadAction<Partial<Filters>>) => {
+            state.filters = {
+                ...state.filters,
+                ...action.payload,
+            };
+        },
     },
 });
 
-export const { addPayment, removePayment, sortAndSave } = paymentsSlice.actions;
+export const { addPayment, removePayment, setFilters } = paymentsSlice.actions;
 export const paymentsReducer = paymentsSlice.reducer;

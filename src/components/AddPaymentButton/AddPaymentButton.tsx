@@ -21,7 +21,7 @@ export const AddPaymentButton = () => {
 
     return (
         <>
-            <Button onClick={showModal}>Добавить</Button>
+            <Button onClick={showModal}>Добавить платеж</Button>
             <Modal
                 closable={false}
                 open={isModalOpen}

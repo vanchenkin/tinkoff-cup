@@ -21,8 +21,10 @@ export const AddPaymentForm: React.FC<Props> = ({ form, onFinish }) => {
                 ...payment,
                 id: nanoid(),
                 date: payment.date.toString(),
+                amount: +payment.amount,
             })
         );
+        form.resetFields();
         onFinish();
     };
 
@@ -54,7 +56,7 @@ export const AddPaymentForm: React.FC<Props> = ({ form, onFinish }) => {
                     },
                 ]}
             >
-                <DatePicker defaultValue={dayjs()} />
+                <DatePicker />
             </Form.Item>
 
             <Form.Item
