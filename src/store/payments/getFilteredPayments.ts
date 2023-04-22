@@ -27,8 +27,10 @@ export const getFilteredPayments = (state: RootStateType) => {
     );
 
     return filters.categories.length
-        ? endFilteredPayments.filter((payment) =>
-              filters.categories.includes(payment.category)
+        ? endFilteredPayments.filter(
+              (payment) =>
+                  filters.categories.includes(payment.category) ||
+                  !payment.category
           )
         : endFilteredPayments;
 };

@@ -1,10 +1,13 @@
 import { DatePicker, Form, FormInstance, Input } from "antd";
 import { PaymentType } from "../../store/payments/types/Payment";
 import { nanoid } from "@reduxjs/toolkit";
-import { CategorySelect } from "../CategorySelect/CategorySelect";
+import {
+    CategorySelect,
+    NoCategoryText,
+} from "../CategorySelect/CategorySelect";
 import { useAppDispatch } from "../../store/store";
 import { addPayment } from "../../store/payments/paymentsSlice";
-import styles from "./AddPaymentForm.module.scss";
+import "./AddPaymentForm.scss";
 import dayjs from "dayjs";
 
 type Props = {
@@ -36,12 +39,16 @@ export const AddPaymentForm: React.FC<Props> = ({ form, onFinish }) => {
         <Form
             name="resource"
             labelCol={{ span: 8 }}
-            initialValues={{ remember: true, date: dayjs() }}
+            initialValues={{
+                remember: true,
+                date: dayjs(),
+                category: NoCategoryText,
+            }}
             onFinish={handleSubmit}
             autoComplete="off"
             form={form}
         >
-            <h2 className={styles.title}>Добавить платеж </h2>
+            <h2 className="title">Добавить платеж</h2>
 
             <Form.Item
                 style={{

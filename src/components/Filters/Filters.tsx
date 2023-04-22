@@ -5,6 +5,7 @@ import "./Filters.scss";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { setFilters } from "../../store/payments/paymentsSlice";
 import dayjs from "dayjs";
+import { NoCategoryText } from "../CategorySelect/CategorySelect";
 
 export const Filters: React.FC = () => {
     const filters = useAppSelector((state) => state.payments.filters);
@@ -23,8 +24,8 @@ export const Filters: React.FC = () => {
         } else {
             dispatch(
                 setFilters({
-                    startDate: arr[0].toString(),
-                    endDate: arr[1].toString(),
+                    startDate: arr[0]?.toString() || null,
+                    endDate: arr[1]?.toString() || null,
                 })
             );
         }
@@ -54,6 +55,9 @@ export const Filters: React.FC = () => {
                 value={filters.categories}
                 onChange={handleSelectChange}
             >
+                <Select.Option label={NoCategoryText} key={NoCategoryText}>
+                    {NoCategoryText}
+                </Select.Option>
                 {categories.map((category) => (
                     <Select.Option label={category.name} key={category.name}>
                         {category.name}

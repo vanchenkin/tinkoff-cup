@@ -12,7 +12,8 @@ type Props = {
     onChange: (name: string) => void;
 };
 
-const NoCategoryText = "Без категории";
+export const NoCategoryText = "Без категории";
+export const NoCategoryColor = "#808080";
 
 export const CategorySelect: React.FC<Props> = ({ onChange }) => {
     const dispatch = useAppDispatch();

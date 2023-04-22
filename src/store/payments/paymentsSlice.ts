@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PaymentType } from "./types/Payment";
-import { Category } from "../categories/types/Category";
-import dayjs from "dayjs";
 
 type Filters = {
     startDate?: string;

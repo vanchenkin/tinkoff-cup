@@ -1,5 +1,3 @@
-import dayjs from "dayjs";
-
 export type PaymentType = {
     id: string;
     name: string;

@@ -16,7 +16,8 @@
         white-space: nowrap;
         gap: 10px;
         text-align: center;
-        min-width: 100px;
+        min-width: 120px;
+        text-overflow: ellipsis;
     }
 
     .description {
